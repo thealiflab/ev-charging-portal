@@ -1,6 +1,6 @@
 <?php
     $title = "EasyEV-Charging";
-    require_once "./includes/head.php";
+    require_once "includes/head.php";
     require_once 'includes/init.php';
 
     if (isset($_SESSION['user'])) {
