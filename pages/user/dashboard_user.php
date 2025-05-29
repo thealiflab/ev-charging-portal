@@ -89,6 +89,6 @@ if ($locations->num_rows > 0) {
 echo "</table>";
 
 echo "<br><a href='user_history.php'>View History</a> | ";
-echo "<a href='logout.php'>Logout</a>";
+echo "<a href='../logout.php'>Logout</a>";
 
 ?>

@@ -34,7 +34,7 @@ else{
     <li><a href="edit_location_list.php">Edit/Delete Locations</a></li>
     <li><a href="list_users.php">List Users</a></li>
     <li><a href="users_checkedin.php">Users Currently Checked-In</a></li>
-    <li><a href="logout.php">Logout</a></li>
+    <li><a href="../logout.php">Logout</a></li>
 </ul>
 
 <hr>
