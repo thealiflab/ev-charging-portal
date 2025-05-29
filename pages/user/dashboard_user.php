@@ -4,7 +4,7 @@ require_once '../classes/database.php';
 require_once '../classes/checkin.php';
 
 if(!isset($_SESSION['user']) || $_SESSION['user']['Type'] !== 'User') {
-    header("Location: ../pages/login.php");
+    header("Location: ../login.php");
     exit();
 }
 
@@ -19,13 +19,13 @@ $stmtCurrent->execute();
 $currentCheckin = $stmtCurrent->get_result()->fetch_assoc();
 
 
-// Search Table
-$searchTerm = "";
+//Search Feature
+$searchText = "";
 if(isset($_GET['search'])){
-    $searchTerm = trim($_GET['search']);
+    $searchText = trim($_GET['search']);
     $sqlSearch = "SELECT l.LocationID, l.Description, l.NumStations, l.CostPerHour, COUNT(c.CheckinID) AS Occupied FROM locations l LEFT JOIN checkins c ON l.LocationID = c.LocationID AND c.CheckoutTime IS NULL WHERE l.Description LIKE ? GROUP BY l.LocationID";
     $stmt = $db->prepare($sqlSearch);
-    $like = "%".$searchTerm."%";
+    $like = "%".$searchText."%";
     $stmt->execute();
     $locations = $stmt->get_result();
 } else{
