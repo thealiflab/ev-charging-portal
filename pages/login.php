@@ -13,7 +13,7 @@
         $login = $user->login($email, $password);
 
         if($login){
-            header("Location: ../actions/dashboard.php"); //dashboard will decide the type of user: admin or user
+            header("Location: ../actions/dashboard_action.php"); //dashboard will decide the type of user: admin or user
             exit();
         }
         else{

@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/init.php';
-require_once '../classes/database.php';
+require_once '../../includes/init.php';
+require_once '../../classes/database.php';
 
 $db = Database::getInstance()->getConnection();
 

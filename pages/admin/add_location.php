@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/init.php';
-require_once '../classes/admin.php';
+require_once '../../includes/init.php';
+require_once '../../classes/admin.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $admin = new Admin();

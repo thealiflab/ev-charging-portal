@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/init.php';
-require_once '../classes/database.php';
+require_once '../../includes/init.php';
+require_once '../../classes/database.php';
 
 if(!isset($_SESSION['user']) || $_SESSION['user']['Type'] != 'Admin'){
     header("Location: ../login.php");
@@ -41,7 +41,7 @@ else{
 
 <h3>Search Charging Locations</h3>
 <form method="GET" action="dashboard_admin.php">
-    <input type="text" name="search" placeholder="Enter Location Keyword..." value="<?= htmlspecialchars($searchTerm) ?>">
+    <input type="text" name="search" placeholder="Enter Location Keyword..." value="<?= htmlspecialchars($searchText) ?>">
     <button type="submit">Search</button>
     <a href="dashboard_admin.php"><button type="button">Reset</button></a>
 </form>

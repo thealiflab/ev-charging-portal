@@ -1,6 +1,6 @@
 <?php
-require_once '../includes/init.php';
-require_once '../classes/checkin.php';
+require_once '../../includes/init.php';
+require_once '../../classes/checkin.php';
 
 if (!isset($_SESSION['user']) || $_SESSION['user']['Type'] !== 'User') {
     header("Location: ../login.php");
