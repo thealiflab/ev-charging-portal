@@ -33,3 +33,4 @@
     <input type="password" name="password" placeholder="Password" required><br><br>
     <button type="submit">Login</button>
 </form>
+<br><a href='../index.php'>Back</a>

@@ -9,8 +9,9 @@ class Checkin{
     }
 
     public function checkin($userID, $locationID){
-        $sql = "SELECT COUNT(*) AS count FROM chekins WHERE UserID = ? AND CheckoutTime IS NULL";
+        $sql = "SELECT COUNT(*) AS count FROM checkins WHERE UserID = ? AND CheckoutTime IS NULL";
         $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("i", $userID);
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
 
@@ -21,13 +22,14 @@ class Checkin{
         $sql = "SELECT (SELECT COUNT(*) FROM checkins WHERE LocationID = ? AND CheckoutTime IS NULL) AS current_occupancy, (SELECT NumStations FROM locations WHERE LocationID = ?) AS max_capacity";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("ii", $locationID, $locationID);
+        $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
 
         if($result['current_occupancy'] >= $result['max_capacity']){
             return false; //if false that means location is full
         }
 
-        $sql = "INSERT INTO checkins(UserID, LocationID) VALUES = ? ?";
+        $sql = "INSERT INTO checkins(UserID, LocationID) VALUES (?, ?)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("ii", $userID, $locationID);
         return $stmt->execute(); //returns true if execute successfully

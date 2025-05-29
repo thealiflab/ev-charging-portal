@@ -45,3 +45,4 @@
     </select><br><br>
     <button type="submit">Register</button>
 </form>
+<br><a href='../index.php'>Back</a>

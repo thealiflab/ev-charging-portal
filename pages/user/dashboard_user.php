@@ -25,7 +25,8 @@ if(isset($_GET['search'])){
     $searchText = trim($_GET['search']);
     $sqlSearch = "SELECT l.LocationID, l.Description, l.NumStations, l.CostPerHour, COUNT(c.CheckinID) AS Occupied FROM locations l LEFT JOIN checkins c ON l.LocationID = c.LocationID AND c.CheckoutTime IS NULL WHERE l.Description LIKE ? GROUP BY l.LocationID";
     $stmt = $db->prepare($sqlSearch);
-    $like = "%".$searchText."%";
+    $like = "%" .$searchText. "%";
+    $stmt->bind_param("s", $like);
     $stmt->execute();
     $locations = $stmt->get_result();
 } else{
@@ -43,14 +44,14 @@ if ($currentCheckin) {
     $check = new Checkin();
     $cost = $check->estimateCurrentCost($currentCheckin['CheckinID']);
     echo "Current Estimated Cost needs to pay (Updates every hour): <strong>$" . number_format($cost, 2) . "</strong><br>";
-    echo "<a href='checkout.php?id={$currentCheckin['CheckinID']}'>Check Out</a><br><br>";
+    echo "<a href='checkout_user.php?id={$currentCheckin['CheckinID']}'>Check Out</a><br><br>";
 } else {
     echo "<h3> You are not currently checked in.</h3>";
 }
 
 echo "<h3>Search Charging Locations</h3>
 <form method='GET' action='dashboard_user.php'>
-    <input type='text' name='search' placeholder='Enter Location Keyword...' value='" . htmlspecialchars($searchTerm) . "'>
+    <input type='text' name='search' placeholder='Enter Location Keyword...' value='" . htmlspecialchars($searchText) . "'>
     <button type='submit'>Search</button>
     <a href='dashboard_user.php'><button type='button'>Reset</button></a>
 </form>";
@@ -79,7 +80,7 @@ if ($locations->num_rows > 0) {
         if ($isFull) {
             echo "<span style='color:red;'>Full</span>";
         } else {
-            echo "<a href='checkin.php?id={$row['LocationID']}'>Check In</a>";
+            echo "<a href='checkin_user.php?id={$row['LocationID']}'>Check In</a>";
         }
         echo "</td></tr>";
     }
