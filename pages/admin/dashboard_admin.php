@@ -1,4 +1,5 @@
 <?php
+$title = "Dashboard Admin | EasyEV-Charging";
 require_once '../../includes/init.php';
 require_once '../../classes/database.php';
 
@@ -27,19 +28,23 @@ else{
 }
 ?>
 
-<h2>Welcome, <?= $_SESSION['user']['Name'] ?> (Admin)</h2>
+<?php
+    require_once "../../includes/head.php";
+?>
 
-<ul>
+<h2 class="mainindexheading">Welcome, <?= $_SESSION['user']['Name'] ?> (Admin)</h2>
+
+<ul class="admin-links">
     <li><a href="add_location.php">Add New Location</a></li>
     <li><a href="edit_location_list.php">Edit/Delete Locations</a></li>
-    <li><a href="list_users.php">List Users</a></li>
-    <li><a href="users_checkedin.php">Users Currently Checked-In</a></li>
+    <li><a href="list_users.php">List All Users</a></li>
+    <li><a href="users_checkedin.php">Checked-In Users</a></li>
     <li><a href="../logout.php">Logout</a></li>
 </ul>
 
 <hr>
 
-<h3>Search Charging Locations</h3>
+<h3 class="mainindexheading">Search Charging Locations</h3>
 <form method="GET" action="dashboard_admin.php">
     <input type="text" name="search" placeholder="Enter Location Keyword..." value="<?= htmlspecialchars($searchText) ?>">
     <button type="submit">Search</button>
@@ -49,7 +54,7 @@ else{
 <br>
 
 <h3>Charging Locations</h3>
-<table border="1" cellpadding="6">
+<table class="table-container" border="0" cellpadding="6">
     <tr>
         <th>ID</th>
         <th>Description</th>
@@ -63,8 +68,8 @@ else{
             <?php
                 $isFull = $row['Occupied'] >= $row['NumStations'];
                 $actionStatus = $isFull 
-                    ? "<span style='color:red;'>❌ Full</span>" 
-                    : "<span style='color:green;'>✅ Vacant</span>";
+                    ? "<span style='color:red;'> Full</span>" 
+                    : "<span style='color:green;'> Vacant</span>";
             ?>
             <tr>
                 <td><?= $row['LocationID'] ?></td>
@@ -79,3 +84,7 @@ else{
         <tr><td colspan="6">No locations found.</td></tr>
     <?php endif; ?>
 </table>
+
+<?php
+    require_once "../../includes/tail.php";
+?>

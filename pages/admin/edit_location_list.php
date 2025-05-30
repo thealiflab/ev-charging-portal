@@ -1,4 +1,5 @@
 <?php
+$title = "Edit Location List | EasyEV-Charging";
 require_once '../../includes/init.php';
 require_once '../../classes/database.php';
 
@@ -11,9 +12,13 @@ $db = Database::getInstance()->getConnection();
 $locations = $db->query("SELECT * FROM locations");
 ?>
 
-<h2>Edit Charging Locations</h2>
+<?php
+    require_once "../../includes/head.php";
+?>
 
-<table border="1" cellpadding="6">
+<h2 class="mainindexheading">Edit Charging Locations</h2>
+
+<table class="table-container" border="0" cellpadding="6">
     <tr>
         <th>ID</th>
         <th>Description</th>
@@ -37,3 +42,7 @@ $locations = $db->query("SELECT * FROM locations");
 </table>
 
 <br><a href="dashboard_admin.php">Back to Dashboard</a>
+
+<?php
+    require_once "../../includes/tail.php";
+?>

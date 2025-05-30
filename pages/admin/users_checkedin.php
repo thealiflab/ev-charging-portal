@@ -1,12 +1,18 @@
 <?php
+$title = "Checked-in Users | EasyEV-Charging";
 require_once '../../includes/init.php';
 require_once '../../classes/admin.php';
 
 $admin = new Admin();
 $result = $admin->getCheckedInUsers();
 
-echo "<h3>Currently Checked-In Users</h3>";
-echo "<table border='1'>
+
+
+require_once "../../includes/head.php";
+
+
+echo "<h3 class='mainindexheading'>Currently Checked-In Users</h3><br>";
+echo "<table class='table-container' border='0'>
 <tr>
     <th>User ID</th>
     <th>Name</th>
@@ -26,3 +32,5 @@ while ($row = $result->fetch_assoc()) {
 }
 
 echo "</table><br><a href='dashboard_admin.php'>Back</a>";
+
+require_once "../../includes/tail.php";

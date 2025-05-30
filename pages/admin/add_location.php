@@ -1,4 +1,5 @@
 <?php
+$title = "ADD Location | EasyEV-Charging";
 require_once '../../includes/init.php';
 require_once '../../classes/admin.php';
 
@@ -9,7 +10,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<h3>Add Charging Location</h3>
+<?php
+    require_once "../../includes/head.php";
+?>
+
+<h3 class="mainindexheading">Add Charging Location</h3>
 <form method="POST">
     <input type="text" name="description" placeholder="Location Description" required><br>
     <input type="number" name="stations" placeholder="Number of Stations" required><br>
@@ -18,3 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </form>
 
 <a href="dashboard_admin.php">Back</a>
+
+<?php
+    require_once "../../includes/tail.php";
+?>

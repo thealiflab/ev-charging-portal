@@ -1,6 +1,5 @@
 <?php
     $title = "Login | EasyEV-Charging";
-    require_once "../includes/head.php";
     require_once '../includes/init.php';
     require_once '../classes/user.php';
 
@@ -26,11 +25,24 @@
     }
 ?>
 
-<h2>Login</h2>
+
+<?php
+    require_once "../includes/head.php";
+?>
+
+<h2 class="mainindexheading">Login</h2>
 <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
 <form method="POST">
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="password" name="password" placeholder="Password" required><br><br>
-    <button type="submit">Login</button>
+    <div class="login-container">
+        <input type="email" name="email" placeholder="Email" required><br>
+        <input type="password" name="password" placeholder="Password" required><br><br>
+        <button type="submit">Login</button>
+    </div>
+    
 </form>
 <br><a href='../index.php'>Back</a>
+
+
+<?php
+    require "../includes/tail.php";
+?>

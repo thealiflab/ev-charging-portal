@@ -1,6 +1,5 @@
 <?php
     $title = "Register | EasyEV-Charging";
-    require_once "../includes/head.php";
     require_once '../includes/init.php';
     require_once '../classes/user.php';
 
@@ -31,18 +30,25 @@
     }
 ?>
 
-<h2>Register</h2>
-<?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
-<form method="POST">
-    <input type="text" name="name" placeholder="Full Name" required><br>
-    <input type="text" name="phone" placeholder="Phone"><br>
-    <input type="email" name="email" placeholder="Email" required><br>
-    <input type="password" name="password" placeholder="Password" required><br>
+<?php
+    require_once "../includes/head.php";
+?>
+
+<h2 class="mainindexheading">Register</h2>
+<?php if (!empty($error)) echo "<p class='error-msg'>$error</p>"; ?>
+<div class="register-container">
+  <form method="POST">
+    <input type="text" name="name" placeholder="Full Name" required>
+    <input type="text" name="phone" placeholder="Phone">
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="password" name="password" placeholder="Password" required>
     <select name="type" required>
-        <option value="">-- Select Type --</option>
-        <option value="User">User</option>
-        <option value="Admin">Admin</option>
-    </select><br><br>
+      <option value="">-- Select Type --</option>
+      <option value="User">User</option>
+      <option value="Admin">Admin</option>
+    </select>
     <button type="submit">Register</button>
-</form>
+  </form>
+</div>
+
 <br><a href='../index.php'>Back</a>

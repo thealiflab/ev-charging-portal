@@ -1,4 +1,5 @@
 <?php
+$title = "User Checkin | EasyEV-Charging";
 require_once '../../includes/init.php';
 require_once '../../classes/checkin.php';
 
@@ -14,7 +15,7 @@ $check = new Checkin();
 $success = $check->checkin($userID, $locationID);
 
 if ($success) {
-    echo "✅ Checked in successfully. <a href='dashboard_user.php'>Back</a>";
+    echo "Checked in successfully. <a href='dashboard_user.php'>Back</a>";
 } else {
-    echo "❌ Check-in failed. You may already be checked in, or the location is full. <a href='dashboard_user.php'>Back</a>";
+    echo "Check-in failed. You may already be checked in, or the location is full. <a href='dashboard_user.php'>Back</a>";
 }

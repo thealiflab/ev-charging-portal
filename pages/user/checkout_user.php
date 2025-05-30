@@ -1,4 +1,5 @@
 <?php
+$title = "Users Checkout | EasyEV-Charging";
 require_once '../../includes/init.php';
 require_once '../../classes/checkin.php';
 

@@ -1,4 +1,5 @@
 <?php
+$title = "Dashboard User | EasyEV-Charging";
 require_once '../../includes/init.php';
 require_once '../../classes/database.php';
 require_once '../../classes/checkin.php';
@@ -34,30 +35,34 @@ if(isset($_GET['search'])){
     $locations = $db->query($sqlSearch);
 }
 
-echo "<h2>Welcome, " . $_SESSION['user']['Name'] . "</h2>";
+
+require_once "../../includes/head.php";
+
+
+echo "<h2 class='mainindexheading'>Welcome, " . $_SESSION['user']['Name'] . "</h2>";
 
 if ($currentCheckin) {
-    echo "<h3>✅ Currently Checked In</h3>";
+    echo "<h3 style='color:Green;'><strong>Currently Checked In</strong</h3>";
     echo "Location: <strong>{$currentCheckin['Description']}</strong><br>";
     echo "Check-in start from Time: {$currentCheckin['CheckinTime']}<br>";
 
     $check = new Checkin();
     $cost = $check->estimateCurrentCost($currentCheckin['CheckinID']);
-    echo "Current Estimated Cost needs to pay (Updates every hour): <strong>$" . number_format($cost, 2) . "</strong><br>";
-    echo "<a href='checkout_user.php?id={$currentCheckin['CheckinID']}'>Check Out</a><br><br>";
+    echo "Current Estimated Cost needs to pay (Updates every hour): <strong>$" . number_format($cost, 2) . "</strong><br><br>";
+    echo "<a href='checkout_user.php?id={$currentCheckin['CheckinID']}'>Check Out</a><br><br><br><hr>";
 } else {
-    echo "<h3> You are not currently checked in.</h3>";
+    echo "<h3> You are not currently checked in.</h3><br><hr>";
 }
 
-echo "<h3>Search Charging Locations</h3>
+echo "<h3 class='mainindexheading'>Search Charging Locations</h3>
 <form method='GET' action='dashboard_user.php'>
     <input type='text' name='search' placeholder='Enter Location Keyword...' value='" . htmlspecialchars($searchText) . "'>
     <button type='submit'>Search</button>
     <a href='dashboard_user.php'><button type='button'>Reset</button></a>
 </form>";
 
-echo "<h3>Available Charging Stations:</h3>";
-echo "<table border='1'>
+echo "<br><h3>Available Charging Stations:</h3>";
+echo "<table class='table-container' border='0'>
 <tr>
     <th>ID</th>
     <th>Description</th>
@@ -91,5 +96,7 @@ echo "</table>";
 
 echo "<br><a href='user_history.php'>View History</a> | ";
 echo "<a href='../logout.php'>Logout</a>";
+
+require_once "../../includes/head.php";
 
 ?>

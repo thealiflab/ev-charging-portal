@@ -1,4 +1,5 @@
 <?php
+$title = "Location History | EasyEV-Charging";
 require_once '../../includes/init.php';
 require_once '../../classes/checkin.php';
 
@@ -11,8 +12,10 @@ $userID = $_SESSION['user']['UserID'];
 $check = new Checkin();
 $result = $check->getUserCheckins($userID);
 
-echo "<h3>Charging History</h3>";
-echo "<table border='1'>
+require_once "../../includes/head.php";
+
+echo "<h3 class='mainindexheading'>Charging History</h3>";
+echo "<table class='table-container' border='0'>
 <tr><th>Location</th><th>Check-in Time</th><th>Check-out Time</th><th>Total Cost</th></tr>";
 
 while ($row = $result->fetch_assoc()) {
@@ -25,3 +28,5 @@ while ($row = $result->fetch_assoc()) {
 }
 echo "</table>";
 echo "<br><a href='dashboard_user.php'>Back</a>";
+
+require_once "../../includes/head.php";

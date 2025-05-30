@@ -1,12 +1,15 @@
 <?php
+$title = "List Users | EasyEV-Charging";
 require_once '../../includes/init.php';
 require_once '../../classes/admin.php';
 
 $admin = new Admin();
 $result = $admin->getAllUsers();
 
-echo "<h3>All Registered Users</h3>";
-echo "<table border='1'><tr><th>Name</th><th>Email</th><th>Phone</th><th>Type</th></tr>";
+require_once "../../includes/head.php";
+
+echo "<h3 class='mainindexheading'>All Registered Users</h3>";
+echo "<table class='table-container' border='0'><tr><th>Name</th><th>Email</th><th>Phone</th><th>Type</th></tr>";
 while ($row = $result->fetch_assoc()) {
     echo "<tr>
         <td>{$row['Name']}</td>
@@ -16,5 +19,7 @@ while ($row = $result->fetch_assoc()) {
     </tr>";
 }
 echo "</table><br><a href='dashboard_admin.php'>Back</a>";
+
+require_once "../../includes/tail.php";
 
 ?>
